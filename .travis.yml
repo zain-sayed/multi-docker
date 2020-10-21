@@ -6,7 +6,7 @@ before_install:
   -docker build -t zainsayed/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true zainsayed/react-test npm test -- --coverage
+  - docker run  zainsayed/react-test npm test -- --coverage
 
 after_success: 
   -docker build -t zainsayed/multi-client ./client
