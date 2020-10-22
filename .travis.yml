@@ -3,21 +3,21 @@ services:
   - docker
 
 before_install:
-  -docker build -t zainsayed/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t zainsayed/react-test -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true zainsayed/react-test npm test -- --coverage
 
 after_success: 
-  -docker build -t zainsayed/multi-client ./client
-  -docker build -t zainsayed/multi-server ./server
-  -docker build -t zainsayed/multi-worker ./worker
-  -docker build -t zainsayed/multi-nginx ./nginx
-  -echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-  -docker push zainsayed/multi-client
-  -docker push zainsayed/multi-server
-  -docker push zainsayed/multi-worker
-  -docker push zainsayed/multi-nginx
+  - docker build -t zainsayed/multi-client ./client
+  - docker build -t zainsayed/multi-server ./server
+  - docker build -t zainsayed/multi-worker ./worker
+  - docker build -t zainsayed/multi-nginx ./nginx
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push zainsayed/multi-client
+  - docker push zainsayed/multi-server
+  - docker push zainsayed/multi-worker
+  - docker push zainsayed/multi-nginx
   #take images and push to docker hub
   #need to login
 language: generic 
